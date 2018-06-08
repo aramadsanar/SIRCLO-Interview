@@ -1,0 +1,55 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.Map;
+
+class TestCart {
+
+	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+	
+	@Before
+	public void redirectIOPath() throws Exception {
+	    System.setOut(new PrintStream(outContent));
+	    System.setErr(new PrintStream(errContent));
+	}
+
+	@Test
+	void test() {
+		Cart testCart = new Cart();
+		Map<String, Integer> cartContents = testCart.getCart();
+		
+		testCart.addProduct("Baju Merah Mantap", 1);
+		assertEquals((int)cartContents.get("Baju Merah Mantap"), 1);
+
+		testCart.addProduct("Baju Merah Mantap", 1);
+		assertEquals((int)cartContents.get("Baju Merah Mantap"), 2);
+		
+		testCart.addProduct("Bukuku", 3);
+		assertEquals((int)cartContents.get("Bukuku"), 3);
+		
+		testCart.removeProduct("Bukuku");
+		assertEquals((boolean)cartContents.containsKey("Bukuku"), false);
+		
+		testCart.removeProduct("ProdukBohongan");
+		assertEquals((boolean)cartContents.containsKey("ProdukBohongan"), false);
+		
+	}
+	
+	@After
+	void restoreIOPath() throws Exception {
+	    System.setOut(System.out);
+	    System.setErr(System.err);
+	}
+
+	
+}

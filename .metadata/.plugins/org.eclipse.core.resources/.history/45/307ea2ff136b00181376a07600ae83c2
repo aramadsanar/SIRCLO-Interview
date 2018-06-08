@@ -1,0 +1,49 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import java.util.Map;
+
+class TestCart {
+
+	@BeforeAll
+	static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterAll
+	static void tearDownAfterClass() throws Exception {
+	}
+
+	@BeforeEach
+	void setUp() throws Exception {
+	}
+
+	@AfterEach
+	void tearDown() throws Exception {
+	}
+
+	@Test
+	void test() {
+		Cart testCart = new Cart();
+		Map<String, Integer> cartContents = testCart.getCart();
+		
+		testCart.addProduct("Baju Merah Mantap", 1);
+		assertEquals((int)cartContents.get("Baju Merah Mantap"), 1);
+
+		testCart.addProduct("Baju Merah Mantap", 1);
+		assertEquals((int)cartContents.get("Baju Merah Mantap"), 2);
+		
+		testCart.addProduct("Bukuku", 3);
+		assertEquals((int)cartContents.get("Bukuku"), 3);
+		
+		testCart.removeProduct("Bukuku");
+		assertEquals((boolean)cartContents.containsKey("Bukuku"), false);
+		
+		testCart.removeProduct("ProdukBohongan");
+		assertEquals((boolean)cartContents.containsKey("ProdukBohongan"), false);
+	}
+
+}
