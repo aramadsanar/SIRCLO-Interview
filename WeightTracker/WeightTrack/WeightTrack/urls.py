@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from weight_tracker.views import view_entries, add_entry, view_data_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('view_data/', view_entries),
+    path('add_entry/', add_entry),
+    path('view_detail/<str:date>/', view_data_detail),
 ]

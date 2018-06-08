@@ -1,0 +1,21 @@
+{% if weight_data %}
+	<table>
+		{% for entry in weight_data %}
+		<tr>
+			<td>{{entry.data_date}}</td>
+			<td>{{entry.min}}</td>
+			<td>{{entry.max}}</td>
+			<td>{{entry.variance}}</td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<td>Average</td>
+			<td>{{avg_min}}</td>
+			<td>{{avg_max}}</td>
+			<td>{{avg_var}}</td>
+		</tr>
+	</table>
+
+{%  else %}
+	<h1> There are no entry here</h1>
+{% endif %]}
