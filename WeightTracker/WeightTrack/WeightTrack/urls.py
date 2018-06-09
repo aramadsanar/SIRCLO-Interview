@@ -20,6 +20,6 @@ from weight_tracker.views import view_entries, add_entry, view_data_detail
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('view_data/', view_entries),
-    path('add_entry/', add_entry),
-    path('view_detail/<str:date>/', view_data_detail),
+    path('add_entry/', add_entry, name="add"),
+    path('view_detail/<int:entry_id>/', view_data_detail, name="detail"),
 ]

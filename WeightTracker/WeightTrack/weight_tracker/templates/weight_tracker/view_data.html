@@ -3,9 +3,10 @@
 		{% for entry in weight_data %}
 		<tr>
 			<td>{{entry.data_date}}</td>
-			<td>{{entry.min}}</td>
-			<td>{{entry.max}}</td>
+			<td>{{entry.min_weight}}</td>
+			<td>{{entry.max_weight}}</td>
 			<td>{{entry.variance}}</td>
+			<td><a href="{% url 'detail' entry.id %}">Detail</a></td>
 		</tr>
 		{% endfor %}
 		<tr>
@@ -18,4 +19,4 @@
 
 {%  else %}
 	<h1> There are no entry here</h1>
-{% endif %]}
+{% endif %}
